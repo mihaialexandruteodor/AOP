@@ -1,5 +1,7 @@
 package aspects;
 
+import AOP.Product;
+
 public aspect ProductManipulationMessages {
 	 
 	pointcut addedProduct() :
