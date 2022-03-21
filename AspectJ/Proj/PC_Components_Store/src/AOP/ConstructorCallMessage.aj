@@ -7,6 +7,11 @@ public aspect ConstructorCallMessage {
         System.out.println("PC Components shop created!");
     }
 
+    before() :initialization(Product.new(..)) {
+        System.out.println("New Product created!");
+    }
+
+
 
 
 	    
