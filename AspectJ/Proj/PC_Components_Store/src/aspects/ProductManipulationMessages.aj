@@ -1,4 +1,4 @@
-package AOP;
+package aspects;
 
 public aspect ProductManipulationMessages {
 	 

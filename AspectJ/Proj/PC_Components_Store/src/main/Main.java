@@ -1,12 +1,12 @@
-package AOP;
+package main;
+
+import javafx.application.Application;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Application.launch(MainFxClass.class, args);
 		
-		Shop shop = new Shop("Galaxy Components");
-		Product product = new Product("Mac Studio");
-		shop.addProductToShop(product);
 
 	}
 
