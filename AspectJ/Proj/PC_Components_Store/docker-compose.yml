@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  mysqldb:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: helloworld
+      MYSQL_DATABASE: products
+    ports:
+      - "3308:3306"
