@@ -33,24 +33,6 @@ public class GuiController implements PropertyChangeListener {
 	@FXML
 	Accordion prod_list_id;
 
-	/**
-	 * Menu Bar
-	 */
-
-	@FXML
-	MenuBar menu_bar;
-
-	@FXML
-	Menu menu_file;
-	@FXML
-	Menu menu_about;
-
-
-	@FXML
-	MenuItem menu_new;
-
-	@FXML
-	MenuItem menu_quit;
 
 	@FXML
 	Button refreshButton;
