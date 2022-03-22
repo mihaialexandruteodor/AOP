@@ -33,5 +33,17 @@ public class DBConnector implements Runnable {
 		}
 		
 	}
+	
+	public void disconnect()
+	{
+		try
+		{
+			conn.close();
+			System.out.println("Disonnected");
+		}
+		catch (SQLException ex) {
+		    ex.printStackTrace();
+		}
+	}
 
 }

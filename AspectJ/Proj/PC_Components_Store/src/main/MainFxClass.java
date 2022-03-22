@@ -33,6 +33,13 @@ public class MainFxClass extends Application {
 			primaryStage.show();
 			
 			DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
+			
+			Shop shop = new Shop("Galaxy Components");
+			Product product = new Product("Mac Studio");
+			shop.addProductToShop(product);
+			
+			
+			dbConn.disconnect();
 
 		
 		} catch (Exception e) {
@@ -42,13 +49,11 @@ public class MainFxClass extends Application {
 	}
 
 	public static void main(String[] args) {
-		
-		Shop shop = new Shop("Galaxy Components");
-		Product product = new Product("Mac Studio");
-		shop.addProductToShop(product);
-		
-		
 		launch(args);
+		
+		
+		
+		
 	}
 
 
