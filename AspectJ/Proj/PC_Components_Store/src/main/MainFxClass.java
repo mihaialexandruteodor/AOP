@@ -24,12 +24,12 @@ public class MainFxClass extends Application {
 			
 			fxmlLoader = new FXMLLoader(getClass().getResource("/resources/GUI.fxml"));
 			Pane root = fxmlLoader.load();
-			Scene scene = new Scene(root, 1200, 600);
+			Scene scene = new Scene(root, 800, 500);
 
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("AOP Project, Mihai Alexandru Teodor");
-			primaryStage.setMinWidth(1200);
-			primaryStage.setMinHeight(600);
+			primaryStage.setMinWidth(800);
+			primaryStage.setMinHeight(500);
 			primaryStage.show();
 			
 			DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
