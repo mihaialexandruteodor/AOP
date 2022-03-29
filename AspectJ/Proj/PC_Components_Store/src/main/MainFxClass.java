@@ -1,13 +1,13 @@
 package main;
 
-import AOP.Product;
-import AOP.Shop;
 import CRUD.DBConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Product;
+import model.Shop;
 import utils.DataSingleton;
 
 public class MainFxClass extends Application {
@@ -34,10 +34,17 @@ public class MainFxClass extends Application {
 			
 			DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
 			
-			Shop shop = new Shop("Galaxy Components");
-			Product product = new Product("Mac Studio");
-			shop.addProductToShop(product);
+			Shop shop = new Shop();
+			shop.setShopName("Galaxy Components");
+			Product product = new Product();
+			product.setProduct_name("Mac Studio");
+			product.setId(0);
+			product.setProduct_price(100);
+			product.setProduct_quantity(30);
+			shop.addProduct(product);
 			
+			
+			dbConn.addProduct(product);
 			
 			dbConn.disconnect();
 

@@ -10,9 +10,7 @@ import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import model.Product;
 
 public class GuiController implements PropertyChangeListener {
 

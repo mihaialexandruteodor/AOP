@@ -1,6 +1,6 @@
 package aspects;
 
-import AOP.Product;
+import model.Product;
 
 public aspect ProductManipulationMessages {
 	 

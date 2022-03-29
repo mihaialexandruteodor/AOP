@@ -1,7 +1,7 @@
 package aspects;
 
-import AOP.Shop;
-import AOP.Product;
+import model.Shop;
+import model.Product;
 
 public aspect ConstructorCallMessage {
 
