@@ -61,7 +61,7 @@ public class DBConnector implements Runnable {
 		
 		int rowsInserted = statement.executeUpdate();
 		if (rowsInserted > 0) {
-		    System.out.println("A new user was inserted successfully!");
+		    System.out.println("A new product was inserted successfully!");
 		}
 	}
 
