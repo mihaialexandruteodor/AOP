@@ -34,17 +34,17 @@ public class MainFxClass extends Application {
 			
 			DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
 			
-			Shop shop = new Shop();
+			/*Shop shop = new Shop();
 			shop.setShopName("Galaxy Components");
 			Product product = new Product();
 			product.setProduct_name("Mac Studio");
-			product.setId(0);
+			product.setId(dbConn.getNumberOfProducts()+1);
 			product.setProduct_price(100);
 			product.setProduct_quantity(30);
 			shop.addProduct(product);
 			
 			
-			dbConn.addProduct(product);
+			dbConn.addProduct(product);*/
 			
 			dbConn.disconnect();
 

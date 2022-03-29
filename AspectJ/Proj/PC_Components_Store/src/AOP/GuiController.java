@@ -1,6 +1,6 @@
 package AOP;
 
-import java.awt.Button;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.Product;
 
@@ -34,6 +35,9 @@ public class GuiController implements PropertyChangeListener {
 
 	@FXML
 	Button refreshButton;
+	
+	@FXML
+	Button addProductButton;
 	
 
 	/**
@@ -77,8 +81,9 @@ public class GuiController implements PropertyChangeListener {
 	}
 
 	@FXML
-	private void performRefresh() {
+	private void refreshGUI() {
 		loadDataIntoLists();
+		System.out.println("test");
 	}
 
 

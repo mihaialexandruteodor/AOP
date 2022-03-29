@@ -3,6 +3,7 @@ package CRUD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Product;
@@ -47,6 +48,16 @@ public class DBConnector implements Runnable {
 		catch (SQLException ex) {
 		    ex.printStackTrace();
 		}
+	}
+	
+	public int getNumberOfProducts() throws SQLException
+	{
+		String sql = "SELECT COUNT(*) AS prodCount FROM product";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		ResultSet r = statement.executeQuery();
+		r.next();
+	    int result = r.getInt("prodCount");
+		return result;
 	}
 	
 	public void addProduct(Product product) throws SQLException
