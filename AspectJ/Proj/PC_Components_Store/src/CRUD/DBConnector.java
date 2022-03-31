@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Product;
+import model.Shop;
 
 public class DBConnector implements Runnable {
 	
@@ -60,12 +61,23 @@ public class DBConnector implements Runnable {
 		return result;
 	}
 	
+	public int getNumberOfShops() throws SQLException
+	{
+		String sql = "SELECT COUNT(*) AS shopCount FROM shop";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		ResultSet r = statement.executeQuery();
+		r.next();
+	    int result = r.getInt("shopCount");
+		return result;
+	}
+	
 	public void addProduct(Product product) throws SQLException
 	{
 		String sql = "INSERT INTO product (id, product_name, product_price, product_quantity) VALUES (?, ?, ?, ?)";
 		 
 		PreparedStatement statement = conn.prepareStatement(sql);
-		statement.setString(1, Integer.toString(product.getId()));
+		Integer id = getNumberOfProducts()+1;
+		statement.setString(1, Integer.toString(id));
 		statement.setString(2, product.getProduct_name());
 		statement.setString(3, Integer.toString(product.getProduct_price()));
 		statement.setString(4, Integer.toString(product.getProduct_quantity()));
@@ -75,5 +87,20 @@ public class DBConnector implements Runnable {
 		    System.out.println("A new product was inserted successfully!");
 		}
 	}
+	
+	public void addShop(Shop shop) throws SQLException
+	{
+		String sql = "INSERT INTO shop (id, shop_name) VALUES (?, ?)";
+		 
+		PreparedStatement statement = conn.prepareStatement(sql);
+		Integer id = getNumberOfShops()+1;
+		statement.setString(1, Integer.toString(id));
+		statement.setString(2, shop.getShopName());
 
+		
+		int rowsInserted = statement.executeUpdate();
+		if (rowsInserted > 0) {
+		    System.out.println("A new shop was inserted successfully!");
+		}
+	}
 }
