@@ -71,7 +71,7 @@ public class DBConnector implements Runnable {
 		return result;
 	}
 	
-	public void addProduct(Product product) throws SQLException
+	public int addProduct(Product product) throws SQLException
 	{
 		String sql = "INSERT INTO product (id, product_name, product_price, product_quantity) VALUES (?, ?, ?, ?)";
 		 
@@ -82,13 +82,11 @@ public class DBConnector implements Runnable {
 		statement.setString(3, Integer.toString(product.getProduct_price()));
 		statement.setString(4, Integer.toString(product.getProduct_quantity()));
 		
-		int rowsInserted = statement.executeUpdate();
-		if (rowsInserted > 0) {
-		    System.out.println("A new product was inserted successfully!");
-		}
+		return statement.executeUpdate();
+		
 	}
 	
-	public void addShop(Shop shop) throws SQLException
+	public int addShop(Shop shop) throws SQLException
 	{
 		String sql = "INSERT INTO shop (id, shop_name) VALUES (?, ?)";
 		 
@@ -98,9 +96,7 @@ public class DBConnector implements Runnable {
 		statement.setString(2, shop.getShopName());
 
 		
-		int rowsInserted = statement.executeUpdate();
-		if (rowsInserted > 0) {
-		    System.out.println("A new shop was inserted successfully!");
-		}
+		return statement.executeUpdate();
+		
 	}
 }

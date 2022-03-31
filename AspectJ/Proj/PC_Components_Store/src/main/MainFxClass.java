@@ -36,7 +36,7 @@ public class MainFxClass extends Application {
 			
 			Shop shop = new Shop();
 			shop.setShopName("Galaxy Components");
-			//dbConn.addShop(shop);
+			dbConn.addShop(shop);
 			
 			
 			/*Product product = new Product();
