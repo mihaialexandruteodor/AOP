@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Product;
 import model.Shop;
@@ -59,6 +61,24 @@ public class DBConnector implements Runnable {
 		r.next();
 	    int result = r.getInt("prodCount");
 		return result;
+	}
+	
+	public List<Product> getProducts() throws SQLException
+	{
+		List<Product> products = new ArrayList<>();
+		String sql = "SELECT * FROM product";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			Product pr = new Product();
+			pr.setId(rs.getInt("id"));
+			pr.setProduct_name(rs.getString("product_name"));
+			pr.setProduct_price(rs.getInt("product_price"));
+			pr.setProduct_quantity(rs.getInt("product_quantity"));
+			products.add(pr);
+			}
+		
+		return products;
 	}
 	
 	public int getNumberOfShops() throws SQLException

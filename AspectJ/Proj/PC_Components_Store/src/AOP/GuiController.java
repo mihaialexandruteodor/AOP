@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import model.Product;
+import utils.DataSingleton;
 
 public class GuiController implements PropertyChangeListener {
 
@@ -30,7 +33,7 @@ public class GuiController implements PropertyChangeListener {
 
 
 	@FXML
-	Accordion prod_list_id;
+	ListView<Product> prod_list_id;
 
 
 	@FXML
@@ -90,19 +93,19 @@ public class GuiController implements PropertyChangeListener {
 
 	void populateProductsList() {
 
-		/*char_list_id.getPanes().removeAll(observableSetCharFiles);
-		observableSetCharFiles.clear();
+		prod_list_id.getItems().removeAll(observableProducts);
+		observableProducts.clear();
 
-		if (DataSingleton.getInstance().getCharFiles() != null
-				&& DataSingleton.getInstance().getCharFiles().isEmpty() == false) {
-			DataSingleton.getInstance().getCharFiles().forEach((c) -> {
+		if (DataSingleton.getInstance().getProducts() != null
+				&& DataSingleton.getInstance().getProducts().isEmpty() == false) {
+			DataSingleton.getInstance().getProducts().forEach((c) -> {
 
-				observableSetCharFiles.add(c);
+				observableProducts.add(c);
 			});
 
-			char_list_id.getPanes().addAll(FXCollections.observableArrayList(observableSetCharFiles));
+			prod_list_id.getItems().addAll(FXCollections.observableArrayList(observableProducts));
 
-		}*/
+		}
 
 	}
 
@@ -110,18 +113,18 @@ public class GuiController implements PropertyChangeListener {
 
 		observableProducts = FXCollections.observableSet();
 
-		//DataSingleton.getInstance().setTextBox(textBox);
+		
 
-		/*file_list_id.setCellFactory(lv -> {
-			ListCell<TextFile> cell = new ListCell<TextFile>() {
+		prod_list_id.setCellFactory(lv -> {
+			ListCell<Product> cell = new ListCell<Product>() {
 
 				@Override
-				protected void updateItem(TextFile item, boolean empty) {
+				protected void updateItem(Product item, boolean empty) {
 					super.updateItem(item, empty);
 					if (item == null || empty) {
 						setText(null);
 					} else {
-						setText(item.getFileName().replace("\"", ""));
+						setText(item.getProduct_name());
 
 					}
 				}
@@ -129,15 +132,7 @@ public class GuiController implements PropertyChangeListener {
 
 			cell.setOnMouseClicked(e -> {
 				if (!cell.isEmpty()) {
-					Document doc = Jsoup.parse(textBox.getHtmlText());
-					DataSingleton.getInstance().getCurrentFile().setFileContent(
-							DataSingleton.getInstance()
-							.prepareHTMLtext(textBox.getHtmlText()));
-					DataSingleton.getInstance().setCurrentFile(cell.getItem());
-					String content = DataSingleton.getInstance()
-							.prepareHTMLtext(DataSingleton.getInstance().getCurrentFile().getFileContent());
-
-					textBox.setHtmlText(content);
+					//do product stuff, open window maybe
 					e.consume();
 				}
 			});
@@ -145,11 +140,11 @@ public class GuiController implements PropertyChangeListener {
 			return cell;
 		});
 
-		file_list_id.setOnMouseClicked(e -> {
+		prod_list_id.setOnMouseClicked(e -> {
 			System.out.println("You clicked on an empty cell");
 		});
 
-		textBox.autosize();*/
+
 
 	}
 

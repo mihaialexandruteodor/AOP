@@ -1,5 +1,7 @@
 package main;
 
+import java.util.List;
+
 import CRUD.DBConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ public class MainFxClass extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
-		    DBConnector dbConn  =new DBConnector();
+		    DBConnector dbConn  = new DBConnector();
 		    Thread thread1 = new Thread(dbConn, "Thread to make sure DB is connected before UI is created");
 		    thread1.start();
 		    thread1.join();
@@ -38,8 +40,11 @@ public class MainFxClass extends Application {
 			shop.setShopName("Galaxy Components");
 			dbConn.addShop(shop);
 			
+			List<Product> products = dbConn.getProducts();
+			DataSingleton.getInstance().setProducts(products);
 			
-			/*Product product = new Product();
+			DataSingleton.getInstance().getGuiController().loadDataIntoLists();
+	 		/*Product product = new Product();
 			product.setProduct_name("Mac Studio");
 			product.setId(dbConn.getNumberOfProducts()+1);
 			product.setProduct_price(100);
