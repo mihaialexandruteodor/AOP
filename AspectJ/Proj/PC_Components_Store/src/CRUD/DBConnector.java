@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.Product;
 import model.Shop;
+import utils.DataSingleton;
 
 public class DBConnector implements Runnable {
 	
@@ -102,6 +103,8 @@ public class DBConnector implements Runnable {
 		statement.setString(3, Integer.toString(product.getProduct_price()));
 		statement.setString(4, Integer.toString(product.getProduct_quantity()));
 		
+		DataSingleton.getInstance().getProducts().add(product);
+		
 		return statement.executeUpdate();
 		
 	}
@@ -115,6 +118,7 @@ public class DBConnector implements Runnable {
 		statement.setString(1, Integer.toString(id));
 		statement.setString(2, shop.getShopName());
 
+		//DataSingleton.getInstance().get
 		
 		return statement.executeUpdate();
 		

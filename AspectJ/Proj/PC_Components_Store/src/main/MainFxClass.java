@@ -35,6 +35,7 @@ public class MainFxClass extends Application {
 			primaryStage.show();
 			
 			DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
+			DataSingleton.getInstance().setDBConnection(dbConn);
 			
 			Shop shop = new Shop();
 			shop.setShopName("Galaxy Components");
@@ -43,7 +44,7 @@ public class MainFxClass extends Application {
 			List<Product> products = dbConn.getProducts();
 			DataSingleton.getInstance().setProducts(products);
 			
-			DataSingleton.getInstance().getGuiController().loadDataIntoLists();
+			DataSingleton.getInstance().getGuiController().populateProductsList();
 	 		/*Product product = new Product();
 			product.setProduct_name("Mac Studio");
 			product.setId(dbConn.getNumberOfProducts()+1);
@@ -54,7 +55,7 @@ public class MainFxClass extends Application {
 			
 			dbConn.addProduct(product);*/
 			
-			dbConn.disconnect();
+			//dbConn.disconnect();
 
 		
 		} catch (Exception e) {

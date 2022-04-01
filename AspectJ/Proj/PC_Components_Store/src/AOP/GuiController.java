@@ -51,11 +51,6 @@ public class GuiController implements PropertyChangeListener {
 
 	}
 
-	public void loadDataIntoLists() {
-
-		populateProductsList();
-
-	}
 
 
 	@FXML
@@ -67,33 +62,26 @@ public class GuiController implements PropertyChangeListener {
 
 	@FXML
 	private void newProductWindow() {
-		//CharacterWindow window = new CharacterWindow();
-		//window.addPropertyChangeListener(this);
+		ProductWindow window = new ProductWindow();
+		window.addPropertyChangeListener(this);
 
 	}
 
 	@FXML
-	private void editProduct() {
-		/*	String name, details;
-		name = DataSingleton.getInstance().getCurrentCharacter().getName();
-		details = DataSingleton.getInstance().getCurrentCharacter().getDetails();
-		name = name.substring(1, name.length() - 1);
-		details = details.substring(1, details.length() - 1);
-		CharacterWindow window = new CharacterWindow(name, details);
-		window.addPropertyChangeListener(this);*/
+	private void removeProduct() {
+		
 	}
 
 	@FXML
 	private void refreshGUI() {
-		loadDataIntoLists();
-		System.out.println("test");
+		populateProductsList();
 	}
 
 
-
-	void populateProductsList() {
+	public void populateProductsList() {
 
 		prod_list_id.getItems().removeAll(observableProducts);
+		prod_list_id.getItems().clear();
 		observableProducts.clear();
 
 		if (DataSingleton.getInstance().getProducts() != null
@@ -152,7 +140,7 @@ public class GuiController implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getPropertyName().equals("refresh")) {
 			Platform.runLater(() -> {
-				loadDataIntoLists();
+				populateProductsList();
 			});
 		
 	}

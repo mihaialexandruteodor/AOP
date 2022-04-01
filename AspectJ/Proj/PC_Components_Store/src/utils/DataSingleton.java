@@ -3,6 +3,7 @@ package utils;
 import java.util.List;
 
 import AOP.GuiController;
+import CRUD.DBConnector;
 import model.Product;
 
 public class DataSingleton {
@@ -11,6 +12,7 @@ public class DataSingleton {
 	GuiController guiController;
 	String connectionString;
 	List<Product> products;
+	DBConnector dbConn;
 	
 
 	private DataSingleton() {
@@ -44,4 +46,15 @@ public class DataSingleton {
 	{
 		return products;
 	}
+
+	public void setDBConnection(DBConnector _dbConn) {
+		dbConn = _dbConn;
+		
+	}
+	
+	public DBConnector getDBConnection()
+	{
+		return dbConn;
+	}
+	
 }
