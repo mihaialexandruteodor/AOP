@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+import javafx.application.Platform;
 import model.Product;
 import utils.DataSingleton;
 
@@ -103,7 +104,7 @@ public class ProductWindow {
 				quantity = Integer.parseInt(quantBox.getText());
 				Product product = new Product();
 				try {
-					product.setId(DataSingleton.getInstance().getDBConnection().getNumberOfProducts()+1);
+					product.setId(DataSingleton.getInstance().getDBConnection().getMaxIDProducts()+1);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,7 +114,12 @@ public class ProductWindow {
 				product.setProduct_quantity(quantity);
 				try {
 					DataSingleton.getInstance().getDBConnection().addProduct(product);
-					//DataSingleton.getInstance().getGuiController().populateProductsList();
+					Platform.runLater(new Runnable(){
+						@Override public void run() {
+						DataSingleton.getInstance().getGuiController().populateProductsList();
+						}
+						});
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

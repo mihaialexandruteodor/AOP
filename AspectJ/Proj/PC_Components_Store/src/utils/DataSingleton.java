@@ -13,6 +13,7 @@ public class DataSingleton {
 	String connectionString;
 	List<Product> products;
 	DBConnector dbConn;
+	Product currentProduct;
 	
 
 	private DataSingleton() {
@@ -55,6 +56,16 @@ public class DataSingleton {
 	public DBConnector getDBConnection()
 	{
 		return dbConn;
+	}
+	
+	public void setCurrentProduct(Product _product)
+	{
+		currentProduct = _product;
+	}
+	
+	public Product getCurrentProduct()
+	{
+		return currentProduct;
 	}
 	
 }

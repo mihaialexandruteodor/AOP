@@ -3,6 +3,7 @@ package AOP;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.sql.SQLException;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -68,8 +69,13 @@ public class GuiController implements PropertyChangeListener {
 	}
 
 	@FXML
-	private void removeProduct() {
-		
+	private void removeProduct() throws SQLException {
+		if(DataSingleton.getInstance().getCurrentProduct() != null)
+		{
+			DataSingleton.getInstance().getDBConnection().removeProduct(DataSingleton.getInstance().getCurrentProduct());
+			DataSingleton.getInstance().setCurrentProduct(null);
+			populateProductsList();
+		}
 	}
 
 	@FXML
@@ -120,7 +126,7 @@ public class GuiController implements PropertyChangeListener {
 
 			cell.setOnMouseClicked(e -> {
 				if (!cell.isEmpty()) {
-					//do product stuff, open window maybe
+					DataSingleton.getInstance().setCurrentProduct(cell.getItem());
 					e.consume();
 				}
 			});

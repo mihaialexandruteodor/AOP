@@ -54,13 +54,13 @@ public class DBConnector implements Runnable {
 		}
 	}
 	
-	public int getNumberOfProducts() throws SQLException
+	public int getMaxIDProducts() throws SQLException
 	{
-		String sql = "SELECT COUNT(*) AS prodCount FROM product";
+		String sql = "SELECT MAX(id) AS MaxID FROM product";
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet r = statement.executeQuery();
 		r.next();
-	    int result = r.getInt("prodCount");
+	    int result = r.getInt("MaxID");
 		return result;
 	}
 	
@@ -82,13 +82,13 @@ public class DBConnector implements Runnable {
 		return products;
 	}
 	
-	public int getNumberOfShops() throws SQLException
+	public int getMaxIDShops() throws SQLException
 	{
-		String sql = "SELECT COUNT(*) AS shopCount FROM shop";
+		String sql = "SELECT MAX(id) AS MaxID FROM shop";
 		PreparedStatement statement = conn.prepareStatement(sql);
 		ResultSet r = statement.executeQuery();
 		r.next();
-	    int result = r.getInt("shopCount");
+	    int result = r.getInt("MaxID");
 		return result;
 	}
 	
@@ -97,7 +97,7 @@ public class DBConnector implements Runnable {
 		String sql = "INSERT INTO product (id, product_name, product_price, product_quantity) VALUES (?, ?, ?, ?)";
 		 
 		PreparedStatement statement = conn.prepareStatement(sql);
-		Integer id = getNumberOfProducts()+1;
+		Integer id = getMaxIDProducts()+1;
 		statement.setString(1, Integer.toString(id));
 		statement.setString(2, product.getProduct_name());
 		statement.setString(3, Integer.toString(product.getProduct_price()));
@@ -114,7 +114,7 @@ public class DBConnector implements Runnable {
 		String sql = "INSERT INTO shop (id, shop_name) VALUES (?, ?)";
 		 
 		PreparedStatement statement = conn.prepareStatement(sql);
-		Integer id = getNumberOfShops()+1;
+		Integer id = getMaxIDShops()+1;
 		statement.setString(1, Integer.toString(id));
 		statement.setString(2, shop.getShopName());
 
@@ -122,5 +122,16 @@ public class DBConnector implements Runnable {
 		
 		return statement.executeUpdate();
 		
+	}
+	
+	public int removeProduct(Product product) throws SQLException
+	{
+		String sql = "DELETE FROM product WHERE id=" + product.getId();
+		 
+		PreparedStatement statement = conn.prepareStatement(sql);
+		
+		DataSingleton.getInstance().getProducts().remove(product);
+		
+		return statement.executeUpdate();
 	}
 }
