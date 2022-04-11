@@ -92,7 +92,7 @@ public class DBConnector implements Runnable {
 		return result;
 	}
 	
-	public int addProduct(Product product) throws SQLException
+	public Product addProduct(Product product) throws SQLException
 	{
 		String sql = "INSERT INTO product (id, product_name, product_price, product_quantity) VALUES (?, ?, ?, ?)";
 		 
@@ -103,9 +103,11 @@ public class DBConnector implements Runnable {
 		statement.setString(3, Integer.toString(product.getProduct_price()));
 		statement.setString(4, Integer.toString(product.getProduct_quantity()));
 		
-		DataSingleton.getInstance().getProducts().add(product);
+		//DataSingleton.getInstance().getProducts().add(product);
 		
-		return statement.executeUpdate();
+		statement.executeUpdate();
+		
+		return product;
 		
 	}
 	

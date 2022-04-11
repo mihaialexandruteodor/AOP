@@ -2,6 +2,7 @@ package aspects;
 
 import CRUD.DBConnector;
 import model.Shop;
+import utils.DataSingleton;
 import model.Product;
 
 public aspect CRUDAspect {
@@ -12,9 +13,10 @@ public aspect CRUDAspect {
 	 
 	 pointcut callProductRemoved(): call(* DBConnector.removeProduct(Product));
 
-	 after() returning (Integer rowsInserted): callProductInserted() {
-		 if(rowsInserted > 0)
+	 after() returning (Product product): callProductInserted() {
+		// if(rowsInserted > 0)
 			 System.out.println("A new product was inserted successfully!");
+			 DataSingleton.getInstance().getProducts().add(product);
 	    }
 	 
 
