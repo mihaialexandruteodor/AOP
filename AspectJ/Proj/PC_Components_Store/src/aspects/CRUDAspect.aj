@@ -14,9 +14,8 @@ public aspect CRUDAspect {
 	 pointcut callProductRemoved(): call(* DBConnector.removeProduct(Product));
 
 	 after() returning (Product product): callProductInserted() {
-		// if(rowsInserted > 0)
-			 System.out.println("A new product was inserted successfully!");
-			 DataSingleton.getInstance().getProducts().add(product);
+		System.out.println("A new product was inserted successfully!");
+		DataSingleton.getInstance().getProducts().add(product);
 	    }
 	 
 
@@ -25,8 +24,8 @@ public aspect CRUDAspect {
 			 System.out.println("A new shop was inserted successfully!");
 	    }
 	 
-	 after() returning (Integer rowsRemoved): callProductRemoved() {
-		 if(rowsRemoved > 0)
-			 System.out.println("A product was removed successfully!");
+	 after() returning (Product product): callProductRemoved() {
+		System.out.println("A product was removed successfully!");
+		DataSingleton.getInstance().getProducts().remove(product);
 	    }
 }

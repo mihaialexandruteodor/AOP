@@ -102,9 +102,7 @@ public class DBConnector implements Runnable {
 		statement.setString(2, product.getProduct_name());
 		statement.setString(3, Integer.toString(product.getProduct_price()));
 		statement.setString(4, Integer.toString(product.getProduct_quantity()));
-		
-		//DataSingleton.getInstance().getProducts().add(product);
-		
+
 		statement.executeUpdate();
 		
 		return product;
@@ -126,14 +124,14 @@ public class DBConnector implements Runnable {
 		
 	}
 	
-	public int removeProduct(Product product) throws SQLException
+	public Product removeProduct(Product product) throws SQLException
 	{
 		String sql = "DELETE FROM product WHERE id=" + product.getId();
 		 
 		PreparedStatement statement = conn.prepareStatement(sql);
 		
-		DataSingleton.getInstance().getProducts().remove(product);
+		statement.executeUpdate();
 		
-		return statement.executeUpdate();
+		return product;
 	}
 }
