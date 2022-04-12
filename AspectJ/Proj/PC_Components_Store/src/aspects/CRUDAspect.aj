@@ -9,6 +9,8 @@ public aspect CRUDAspect {
 	
 	 pointcut callProductInserted(): call(* DBConnector.addProduct(Product));
 	 
+	 pointcut callProductUpdated(): call(* DBConnector.updateProduct(Product));
+	 
 	 pointcut callShopInserted(): call(* DBConnector.addShop(Shop));
 	 
 	 pointcut callProductRemoved(): call(* DBConnector.removeProduct(Product));
@@ -17,6 +19,10 @@ public aspect CRUDAspect {
 		System.out.println("A new product was inserted successfully!");
 		DataSingleton.getInstance().getProducts().add(product);
 	    }
+	 
+	 after() returning (Product product): callProductUpdated() {
+			System.out.println("A product was updated successfully!");
+		    }
 	 
 
 	 after() returning (Integer rowsInserted): callShopInserted() {

@@ -109,6 +109,22 @@ public class DBConnector implements Runnable {
 		
 	}
 	
+	public Product updateProduct(Product product) throws SQLException
+	{
+		String sql = "UPDATE product SET product_name ='"+product.getProduct_name()
+		+"', product_price="+product.getProduct_price()
+		+", product_quantity="+Integer.toString(product.getProduct_quantity())
+		+" WHERE id="+Integer.toString(product.getId());
+		 
+		PreparedStatement statement = conn.prepareStatement(sql);
+		
+		statement.executeUpdate();
+		
+		return product;
+		
+	}
+	
+	
 	public int addShop(Shop shop) throws SQLException
 	{
 		String sql = "INSERT INTO shop (id, shop_name) VALUES (?, ?)";

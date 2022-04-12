@@ -17,7 +17,9 @@ import utils.DataSingleton;
 
 public class ProductWindow {
 	String productName;
-	int quantity, price;
+	int quantity, price, id;
+	
+
 	boolean editing;
 
 	private final PropertyChangeSupport support = new PropertyChangeSupport(this);
@@ -36,8 +38,11 @@ public class ProductWindow {
 		editing = false;
 	}
 
-	public ProductWindow(String prName, int _quant, int _price) {
+	public ProductWindow(String prName, int _quant, int _price, int _id) {
 		setProductName(prName);
+		setProductQuantity(_quant);
+		setProductPrice(_price);
+		setId(_id);
 		setWindow();
 		editing = true;
 	}
@@ -112,8 +117,16 @@ public class ProductWindow {
 				product.setProduct_name(productName);
 				product.setProduct_price(price);
 				product.setProduct_quantity(quantity);
+				product.setId(id);
 				try {
-					DataSingleton.getInstance().getDBConnection().addProduct(product);
+					if(editing=false)
+						DataSingleton.getInstance().getDBConnection().addProduct(product);
+					else
+						{
+							DataSingleton.getInstance().getProducts().remove(DataSingleton.getInstance().getCurrentProduct());
+							DataSingleton.getInstance().getProducts().add(product);
+							DataSingleton.getInstance().getDBConnection().updateProduct(product);
+						}
 					Platform.runLater(new Runnable(){
 						@Override public void run() {
 						DataSingleton.getInstance().getGuiController().populateProductsList();
@@ -162,6 +175,14 @@ public class ProductWindow {
 	public void setProductQuantity(int _quantity)
 	{
 		quantity = _quantity;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

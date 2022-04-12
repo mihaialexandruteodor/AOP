@@ -43,6 +43,13 @@ public class GuiController implements PropertyChangeListener {
 	@FXML
 	Button addProductButton;
 	
+	@FXML
+	Button removeSelectedButton;
+	
+
+	@FXML
+	Button updateSelectedButton;
+	
 
 	/**
 	 * Methods
@@ -75,6 +82,17 @@ public class GuiController implements PropertyChangeListener {
 			DataSingleton.getInstance().getDBConnection().removeProduct(DataSingleton.getInstance().getCurrentProduct());
 			DataSingleton.getInstance().setCurrentProduct(null);
 			populateProductsList();
+		}
+	}
+	
+	@FXML
+	private void updateProduct() throws SQLException {
+		if(DataSingleton.getInstance().getCurrentProduct() != null)
+		{
+			Product prod = DataSingleton.getInstance().getCurrentProduct();
+			ProductWindow window = new ProductWindow(prod.getProduct_name(), prod.getProduct_quantity(),
+					prod.getProduct_price(), prod.getId());
+			window.addPropertyChangeListener(this);
 		}
 	}
 
