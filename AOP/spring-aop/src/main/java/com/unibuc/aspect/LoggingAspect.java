@@ -7,21 +7,21 @@ import org.aspectj.lang.annotation.Before;
 @Aspect
 public class LoggingAspect {
 
-    @Before("execution(* com.unibuc.service.impl.EmployeeManagerImpl.*(..))")
+    @Before("execution(* com.unibuc.service.ProductManager.*(..))")
     public void logBeforeAllMethods(JoinPoint joinPoint)
     {
         System.out.println("****LoggingAspect.logBeforeAllMethods() : " + joinPoint.getSignature().getName());
     }
 
-    @Before("execution(* com.unibuc.service.impl.EmployeeManagerImpl.getEmployeeById(..))")
-    public void logBeforeGetEmployee(JoinPoint joinPoint)
+    @Before("execution(* com.unibuc.service.ProductManager.getProductById(..))")
+    public void logBeforeGetProduct(JoinPoint joinPoint)
     {
-        System.out.println("****LoggingAspect.logBeforeGetEmployee() : " + joinPoint.getSignature().getName());
+        System.out.println("****LoggingAspect.logBeforeGetProduct() : " + joinPoint.getSignature().getName());
     }
 
-    @Before("execution(* com.unibuc.service.impl.EmployeeManagerImpl.createEmployee(..))")
-    public void logBeforeCreateEmployee(JoinPoint joinPoint)
+    @Before("execution(* com.unibuc.service.ProductManager.createProduct(..))")
+    public void logBeforeCreateProduct(JoinPoint joinPoint)
     {
-        System.out.println("****LoggingAspect.logBeforeCreateEmployee() : " + joinPoint.getSignature().getName());
+        System.out.println("****LoggingAspect.logBeforeCreateProduct() : " + joinPoint.getSignature().getName());
     }
 }

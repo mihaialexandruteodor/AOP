@@ -1,19 +1,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.springframework.org/schema/aop/
-    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
-    <!-- Enable @AspectJ annotation support  -->
-    <aop:aspectj-autoproxy />
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd>
+                            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
 
 
-    <!-- Employee manager -->
-    <bean id="employeeManager" class="com.unibuc.service.impl.EmployeeManagerImpl" />
 
     <!-- Logging Aspect -->
     <bean id="loggingAspect" class="com.unibuc.aspect.LoggingAspect" />
+
+    <!-- Product manager -->
+    <bean id="productManager" class="com.unibuc.service.ProductManager" />
+
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
 
 </beans>
