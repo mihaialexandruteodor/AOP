@@ -16,7 +16,7 @@ public class DBConnector implements Runnable {
 	
 	public DBConnector() {
 	
-	 dbURL = "jdbc:mysql://localhost:3308/products";
+	 dbURL = "jdbc:mysql://localhost:3306/sys";
 	 username = "root";
 	 password = "helloworld";
 	}
