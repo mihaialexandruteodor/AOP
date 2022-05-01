@@ -79,7 +79,7 @@ public class GuiController implements PropertyChangeListener {
     private void removeProduct() throws SQLException {
         if(DataSingleton.getInstance().getCurrentProduct() != null)
         {
-            DataSingleton.getInstance().getProductManager().deleteProduct(DataSingleton.getInstance().getCurrentProduct().getId());
+            DataSingleton.getInstance().getProductManager().deleteProduct(DataSingleton.getInstance().getCurrentProduct());
             DataSingleton.getInstance().setCurrentProduct(null);
             populateProductsList();
         }

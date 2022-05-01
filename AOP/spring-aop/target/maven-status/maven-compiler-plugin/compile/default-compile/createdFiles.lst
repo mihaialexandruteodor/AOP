@@ -7,6 +7,7 @@ com/unibuc/view/ProductWindow$1$1.class
 com/unibuc/aspect/LoggingAspect.class
 com/unibuc/view/ProductWindow.class
 com/unibuc/aspect/AppConfig.class
+com/unibuc/repository/ProductRepository.class
 com/unibuc/utils/DataSingleton.class
 com/unibuc/controller/GuiController.class
 com/unibuc/controller/MainFXClass.class

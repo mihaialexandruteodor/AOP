@@ -113,13 +113,22 @@ public class ProductWindow {
                 product.setProduct_price(price);
                 product.setProduct_quantity(quantity);
                 product.setId(id);
-                if(editing=false)
-                    DataSingleton.getInstance().getProductManager().createProduct(product);
+                if(editing=false) {
+                    try {
+                        DataSingleton.getInstance().getProductManager().createProduct(product);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
                 else
                 {
                     DataSingleton.getInstance().getProducts().remove(DataSingleton.getInstance().getCurrentProduct());
                     DataSingleton.getInstance().getProducts().add(product);
-                    DataSingleton.getInstance().getProductManager().updateProduct(product);
+                    try {
+                        DataSingleton.getInstance().getProductManager().updateProduct(product);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
                 Platform.runLater(new Runnable(){
                     @Override public void run() {

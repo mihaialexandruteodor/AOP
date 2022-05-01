@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class AppConfig {
 
     @Bean
-    public ProductManager fooService() {
+    public ProductManager fooService() throws InterruptedException {
         return new ProductManager();
     }
 

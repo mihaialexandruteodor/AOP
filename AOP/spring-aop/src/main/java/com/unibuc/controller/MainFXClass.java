@@ -3,6 +3,7 @@ package com.unibuc.controller;
 
 
 import com.unibuc.model.Product;
+import com.unibuc.repository.ProductRepository;
 import com.unibuc.service.ProductManager;
 import com.unibuc.utils.DataSingleton;
 import javafx.application.Application;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 
 public class MainFXClass extends Application {
 
@@ -21,6 +24,7 @@ public class MainFXClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
+
             ApplicationContext context = new ClassPathXmlApplicationContext
                     ("applicationContext.xml");
 
@@ -40,8 +44,8 @@ public class MainFXClass extends Application {
 
             DataSingleton.getInstance().setGuiController(fxmlLoader.getController());
 
-           // List<Product> products = dbConn.getProducts();
-           // DataSingleton.getInstance().setProducts(products);
+            List<Product> products =  DataSingleton.getInstance().getProductManager().getAllProducts();
+            DataSingleton.getInstance().setProducts(products);
 
             DataSingleton.getInstance().getGuiController().populateProductsList();
 
