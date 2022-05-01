@@ -1,0 +1,5 @@
+com/unibuc/model/Product.class
+com/unibuc/aspect/LoggingAspect.class
+Runner.class
+com/unibuc/aspect/AppConfig.class
+com/unibuc/service/ProductManager.class
