@@ -13,6 +13,9 @@
     <!-- Logging Aspect -->
     <bean id="loggingAspect" class="com.unibuc.aspect.LoggingAspect" />
 
+    <!-- Logging Aspect -->
+    <bean id="insertionChecks" class="com.unibuc.aspect.InsertionChecks" />
+
     <!-- Product manager -->
     <bean id="productManager" class="com.unibuc.service.ProductManager" />
 

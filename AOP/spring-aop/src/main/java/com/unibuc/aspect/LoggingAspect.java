@@ -24,4 +24,6 @@ public class LoggingAspect {
     {
         System.out.println("****LoggingAspect.logBeforeCreateProduct() : " + joinPoint.getSignature().getName());
     }
+
+
 }
