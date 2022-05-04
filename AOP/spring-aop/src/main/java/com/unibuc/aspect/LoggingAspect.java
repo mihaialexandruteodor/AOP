@@ -25,5 +25,16 @@ public class LoggingAspect {
         System.out.println("****LoggingAspect.logBeforeCreateProduct() : " + joinPoint.getSignature().getName());
     }
 
+    @Before("execution(* com.unibuc.service.ProductManager.updateProduct(..))")
+    public void logBeforeUpdateProduct(JoinPoint joinPoint)
+    {
+        System.out.println("****LoggingAspect.logBeforeUpdateProduct() : " + joinPoint.getSignature().getName());
+    }
+
+    @Before("execution(* com.unibuc.service.ProductManager.deleteProduct(..))")
+    public void logBeforeDeleteProduct(JoinPoint joinPoint)
+    {
+        System.out.println("****LoggingAspect.logBeforeDeleteProduct() : " + joinPoint.getSignature().getName());
+    }
 
 }
