@@ -49,8 +49,14 @@ public class MainFXClass extends Application {
 
             DataSingleton.getInstance().getGuiController().populateProductsList();
 
-            /** INSERTION CHECK **/
+              /** INSERTION CHECK **/
          //   DataSingleton.getInstance().getProductManager().createProduct(null);
+
+               /** UPDATE CHECK **/
+         //   DataSingleton.getInstance().getProductManager().updateProduct(null);
+
+               /** DELETE CHECK **/
+         //   DataSingleton.getInstance().getProductManager().deleteProduct(null);
 
         } catch (Exception e) {
             e.printStackTrace();
